@@ -1,0 +1,10 @@
+<?php
+$message    = $this->getMessage();
+$message_id = $message->getMessageId();
+$chat_id    = $message->getChat()->getId();
+$user_id    = $message->getFrom()->getId();
+
+if (!$this->getTelegram()->isAdmin($user_id)) {
+    return Request::deleteMessage(compact('message_id', 'chat_id'));
+}
+>
